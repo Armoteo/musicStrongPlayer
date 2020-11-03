@@ -9,22 +9,20 @@ const fetchWorker = ({
   next,
   dispatch
 }) => {
-  console.log("songsList 777")
-   MusicFiles.getAll({
-    blured : true, 
-    artist : true,
-    duration : true, 
-    cover : false, 
-    genre : true,
-    title : true,
-    minimumSongDuration : 10000,
-    fields : ['title','albumTitle','genre','lyrics','artwork','duration']
-}).then(tracks => {
+  MusicFiles.getAll({
+    blured: true,
+    artist: true,
+    duration: true,
+    cover: false,
+    genre: true,
+    title: true,
+    minimumSongDuration: 10000,
+    fields: ['title', 'albumTitle', 'genre', 'lyrics', 'artwork', 'duration']
+  }).then(tracks => {
     dispatch(setSongsList(tracks))
-}).catch(error => {
-    // catch the error
+  }).catch(error => {
     console.log(error)
-}) 
+  })
 };
 
 

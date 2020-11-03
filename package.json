@@ -12,11 +12,12 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
-    "@fortawesome/react-fontawesome": "^0.1.12",
+    "@fortawesome/react-native-fontawesome": "^0.2.6",
     "react": "16.13.1",
     "react-native": "0.63.2",
     "react-native-get-music-files": "^2.1.0",
     "react-native-permissions": "^2.1.5",
+    "react-native-svg": "^12.1.0",
     "react-native-swift": "^1.2.3",
     "react-native-track-player": "^1.2.3",
     "react-redux": "^7.2.2",

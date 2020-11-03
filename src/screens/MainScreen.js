@@ -4,26 +4,27 @@ import { connect } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 import { loadSongs } from '../store/actions/songListAction';
 
-const MainScreen = ({loadSongs, songList}) =>{
+const MainScreen = ({ loadSongs, songList }) => {
 
-  console.log(songList);
-  useEffect(()=>{
+  useEffect(() => {
     loadSongs();
-  },[]);
+  }, []);
 
-  return(
+  return (
     <View>
       <Text>get songs MainScreen</Text>
-    </View> 
+    </View>
   )
-} 
+}
 
 MainScreen.defaultProps = {
-  
+  loadSongs: () => { },
+  songList: {}
 };
 
 MainScreen.propTypes = {
-
+  loadSongs: PropTypes.func,
+  songList: PropTypes.shape({})
 };
 
 const styles = StyleSheet.create({

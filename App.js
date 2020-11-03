@@ -1,27 +1,23 @@
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import store from './src/store/index';
 import { ScreenState } from './src/context/screen/ScreenState';
 import Permissions, { PERMISSIONS } from 'react-native-permissions';
 import { Layout } from './src/layouts/Layout';
-import {faMapMarker} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-{/* <FontAwesomeIcon icon={icon} /> */}
 
 const App = () => {
-const [permissionsStorage, setPermissionsStorage] = useState('');
+  const [permissionsStorage, setPermissionsStorage] = useState('');
 
-  useEffect(()=>{
+  useEffect(() => {
     Permissions.request(PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE).then((response) => {
       setPermissionsStorage(response);
     });
   }, []);
-  
+
   return (
     <Provider store={store}>
       <ScreenState>
-        {permissionsStorage === 'granted' && <Layout/>}
+        {permissionsStorage === 'granted' && <Layout />}
       </ScreenState>
     </Provider>
   );
