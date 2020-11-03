@@ -1,24 +1,19 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, DeviceEventEmitter, Alert } from 'react-native';
+import React, {useEffect, useState } from 'react';
+import { Provider } from 'react-redux';
+import store from './src/store/index';
+import { ScreenState } from './src/context/screen/ScreenState';
 import Permissions, { PERMISSIONS } from 'react-native-permissions';
 import MusicFiles from 'react-native-get-music-files';
+import {faMapMarker} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Layout } from './src/layouts/Layout';
+{/* <FontAwesomeIcon icon={icon} /> */}
 
-class App extends Component {
-  state = {
-    songs: [],
-    photoPermission: ''
-  }
-  componentDidMount() {
-    Permissions.request(PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE).then((response) => {
-      this.setState({ photoPermission: response });
-      if(response === 'granted') {
-        this.getSongs();
-      }
-    });
-  }
+const App = () => {
+const [songsList, setSongsList] = useState([]);
+const [permissionsStorage, setPermissionsStorage] = useState('');
 
-
-  getSongs = () => {
+ const getSongs = () => {
     MusicFiles.getAll({
       blured : true, 
       artist : true,
@@ -29,27 +24,30 @@ class App extends Component {
       minimumSongDuration : 10000,
       fields : ['title','albumTitle','genre','lyrics','artwork','duration']
   }).then(tracks => {
-      // do your stuff...
-      this.setState({songs: tracks})
+      setSongsList(tracks);
   }).catch(error => {
       // catch the error
       console.log(error)
   })
   };
 
-
-
-  render() {
-    console.log(this.state.songs)
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-       <Text>get songs2</Text>
-      </View> 
-    );
-  }
+  useEffect(()=>{
+    Permissions.request(PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE).then((response) => {
+      setPermissionsStorage(response);
+      if(response === 'granted') {
+        getSongs();
+      }
+    });
+  }, []);
+  
+  return (
+    <Provider store={store}>
+      <ScreenState>
+        <Layout/>
+      </ScreenState>
+    </Provider>
+  );
 }
-
-const styles = StyleSheet.create({});
 
 export default App;
 
