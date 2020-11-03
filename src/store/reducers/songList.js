@@ -1,4 +1,4 @@
-import {LOAD_SONGS} from '../types';
+import {SET_SONGS_LIST} from '../types';
 
 const initialState = {
   songList:[]
@@ -6,7 +6,7 @@ const initialState = {
 
 export const songListReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOAD_SONGS: return {
+    case SET_SONGS_LIST: return {
       ...state, songList: action.payload
     }
     default: return state

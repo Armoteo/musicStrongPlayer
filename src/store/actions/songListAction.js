@@ -1,11 +1,10 @@
-import { LOAD_SONGS} from '../types'
+import { LOAD_SONGS, SET_SONGS_LIST} from '../types';
 
-export const loadCards = () => {
-  return async dispatch => {
-    const data = await DB.getData()
-    dispatch({
-      type: LOAD_SONGS,
-      payload: data
-    })
-  }
-}
+export const loadSongs = () => ({
+  type: LOAD_SONGS
+});
+
+export const setSongsList = (data) => ({
+  type: SET_SONGS_LIST,
+  payload: data
+});
