@@ -15,16 +15,13 @@ const [permissionsStorage, setPermissionsStorage] = useState('');
   useEffect(()=>{
     Permissions.request(PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE).then((response) => {
       setPermissionsStorage(response);
-      if(response === 'granted') {
-        // getSongs();
-      }
     });
   }, []);
   
   return (
     <Provider store={store}>
       <ScreenState>
-        <Layout/>
+        {permissionsStorage === 'granted' && <Layout/>}
       </ScreenState>
     </Provider>
   );

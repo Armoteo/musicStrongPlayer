@@ -4,15 +4,16 @@ import { connect } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 import { loadSongs } from '../store/actions/songListAction';
 
-const MainScreen = () =>{
+const MainScreen = ({loadSongs, songList}) =>{
 
-
+  console.log(songList);
   useEffect(()=>{
     loadSongs();
-  },[])
+  },[]);
+
   return(
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>get songs2</Text>
+    <View>
+      <Text>get songs MainScreen</Text>
     </View> 
   )
 } 
@@ -22,7 +23,7 @@ MainScreen.defaultProps = {
 };
 
 MainScreen.propTypes = {
-  
+
 };
 
 const styles = StyleSheet.create({
@@ -31,8 +32,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    // listWeather: getCityWeather(state),
-    // statusHeader: getStatusHeader(state)
+    songList: state.songList
   };
 };
 

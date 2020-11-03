@@ -17,7 +17,10 @@ export const Layout = () => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 5,
-    backgroundColor: '#EFEFEF'
+    backgroundColor: '#EFEFEF',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center' 
   }
 });
 
