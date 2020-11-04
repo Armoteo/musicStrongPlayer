@@ -4,6 +4,7 @@ import store from './src/store/index';
 import { ScreenState } from './src/context/screen/ScreenState';
 import Permissions, { PERMISSIONS } from 'react-native-permissions';
 import { Layout } from './src/layouts/Layout';
+import MusicFiles from 'react-native-get-music-files';
 
 const App = () => {
   const [permissionsStorage, setPermissionsStorage] = useState('');

@@ -22,7 +22,6 @@ export const Layout = () => {
 const styles = StyleSheet.create({
   container: {
     height: '100%',
-    alignItems: 'center',
     backgroundColor: '#2B2B2B',
     justifyContent: 'space-between'
   }
