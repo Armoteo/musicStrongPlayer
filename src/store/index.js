@@ -1,10 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { songListReducer } from './reducers/songList';
-import {songListMiddleWare} from './middleWares/songListMiddleWare';
+import { controlPLayerReducer } from './reducers/controlPLayerReducer';
+import { songListMiddleWare } from './middleWares/songListMiddleWare';
 
 const rooReducer = combineReducers({
-  songList: songListReducer
+  songList: songListReducer,
+  controlState: controlPLayerReducer
 })
 
 
