@@ -9,7 +9,6 @@ const fetchWorker = ({
   next,
   dispatch
 }) => {
-  console.log('midl')
   MusicFiles.getAll({
     blured: true,
     artist: true,
@@ -20,7 +19,6 @@ const fetchWorker = ({
     minimumSongDuration: 10000,
     fields: ['title', 'albumTitle', 'genre', 'lyrics', 'artwork', 'duration']
   }).then(tracks => {
-    console.log('midl2', tracks)
     dispatch(setSongsList(tracks))
   }).catch(error => {
     console.log(error)

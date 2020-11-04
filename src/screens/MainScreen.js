@@ -12,27 +12,30 @@ const MainScreen = ({ loadSongs, songList }) => {
     loadSongs();
   }, []);
 
-  console.log(songList)
-
   return (
-    <View>
-      <ListMusic songList={songList} />
+    <View style={styles.container}>
+      <ListMusic songList={songList.songList} />
     </View>
   )
 }
 
 MainScreen.defaultProps = {
   loadSongs: () => { },
-  songList: []
+  songList: {}
 };
 
 MainScreen.propTypes = {
   loadSongs: PropTypes.func,
-  songList: PropTypes.arrayOf(PropTypes.shape({}))
+  songList: PropTypes.shape({
+    songList: PropTypes.arrayOf(PropTypes.shape({}))
+  })
 };
 
 const styles = StyleSheet.create({
-
+  container: {
+    width: '100%',
+    flex: 2
+  }
 });
 
 const mapStateToProps = (state) => {

@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import Song from './Song';
 
-const ListMusic = ({ songList, }) => (
+const ListMusic = ({ songList }) => (
   <View style={styles.container}>
     <FlatList
       data={songList}
-      renderItem={({ item }) => {
+      renderItem={({ item }) => (
         <Song
           name={item.title}
           artist={item.author}
           duration={item.duration}
         />
-      }}
-      keyExtractor={item => item.id.toString()}
+      )}
+      keyExtractor={index => index.title}
     />
   </View>
 );
@@ -39,7 +39,7 @@ ListMusic.defaultProps = {
 };
 
 ListMusic.propTypes = {
-  songList: PropTypes.shape({})
+  songList: PropTypes.arrayOf(PropTypes.shape({}))
 };
 
 const styles = StyleSheet.create({

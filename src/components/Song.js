@@ -12,7 +12,6 @@ const Song = ({ name, artist, duration }) => {
 
   return (
     <TouchableOpacity style={styles.container}>
-      {/* <View style={styles.container}> */}
       <Text style={styles.name}>
         {name}
       </Text>
@@ -20,9 +19,8 @@ const Song = ({ name, artist, duration }) => {
         {artist}
       </Text>
       <Text style={styles.duration}>
-        {converTime(duration)}
+        {converTime(Number(duration))}
       </Text>
-      {/* </View> */}
     </TouchableOpacity>
   )
 };
@@ -30,13 +28,13 @@ const Song = ({ name, artist, duration }) => {
 Song.defaultProps = {
   name: '',
   artist: '',
-  duration: 0
+  duration: ''
 };
 
 Song.propTypes = {
   name: PropTypes.string,
   artist: PropTypes.string,
-  duration: PropTypes.number
+  duration: PropTypes.string
 
 };
 
@@ -44,20 +42,24 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     paddingHorizontal: 5,
-    paddingVertical: 5
+    paddingVertical: 5,
+    backgroundColor: 'rgba(50, 50, 50, 0.5)',
+    marginVertical: 1
   },
   name: {
     fontSize: 18,
     color: '#725D24'
   },
   artist: {
-    fontSize: 15,
+    fontSize: 14,
     color: '#725D24'
   },
   duration: {
-    fontSize: 10,
+    fontSize: 15,
     color: '#725D24',
-    position: 'absolute'
+    position: 'absolute',
+    right: 10,
+    top: '50%'
   }
 
 });
