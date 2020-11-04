@@ -3,15 +3,17 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import Song from './Song';
 
-const ListMusic = ({ songList }) => (
+const ListMusic = ({ songList, clickSong }) => (
   <View style={styles.container}>
     <FlatList
       data={songList}
-      renderItem={({ item }) => (
+      renderItem={({ item, index }) => (
         <Song
           name={item.title}
           artist={item.author}
           duration={item.duration}
+          id={index}
+          clickSong={clickSong}
         />
       )}
       keyExtractor={index => index.title}
@@ -19,27 +21,14 @@ const ListMusic = ({ songList }) => (
   </View>
 );
 
-
-{/* <FlatList
-        contentContainerStyle={{ paddingBottom: 220 }}
-        data={filterData}
-        renderItem={({ item }) =>
-          (<Card
-            itemData={item}
-            onClick={this.clickEditBtn}
-            onDelete={this.onDelete}
-          />)
-        }
-        keyExtractor={item => item.id.toString()}
-      /> */}
-
-
 ListMusic.defaultProps = {
-  songList: {}
+  songList: {},
+  clickSong:()=>{}
 };
 
 ListMusic.propTypes = {
-  songList: PropTypes.arrayOf(PropTypes.shape({}))
+  songList: PropTypes.arrayOf(PropTypes.shape({})),
+  clickSong: PropTypes.func,
 };
 
 const styles = StyleSheet.create({

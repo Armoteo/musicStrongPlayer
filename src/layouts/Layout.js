@@ -4,7 +4,11 @@ import ControlPanel from '../components/ControlPanel';
 import Navbar from '../components/Navbar';
 import { ScreenContext } from '../context/screen/screenContext';
 import MainScreen from '../screens/MainScreen';
+import TrackPlayer from 'react-native-track-player';
 
+const pause = () => {
+  TrackPlayer.pause();
+};
 
 export const Layout = () => {
   const { screenId, changeScreen } = useContext(ScreenContext)
@@ -14,7 +18,7 @@ export const Layout = () => {
     <View style={styles.container}>
       <Navbar title="Strong player" />
       {screenId === 1 ? <MainScreen /> : <MainScreen />}
-      <ControlPanel play={play} />
+      <ControlPanel play={play} pause={pause} />
     </View>
   </SafeAreaView >)
 }

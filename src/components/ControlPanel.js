@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Image, TouchableOpacity, View } from 'react-native';
 
-const ControlPanel = ({ play }) => (
+const ControlPanel = ({ play, pause }) => (
   <View style={styles.container}>
     <View style={styles.buttonBox}>
       <TouchableOpacity
@@ -16,6 +16,7 @@ const ControlPanel = ({ play }) => (
       {!play && (
         <TouchableOpacity
           activeOpacity={0.5}
+          onPress={pause}
         >
           <Image
             style={styles.btnControl}
@@ -25,6 +26,7 @@ const ControlPanel = ({ play }) => (
       {play && (
         <TouchableOpacity
           activeOpacity={0.5}
+          onPress={pause}
         >
           <Image
             style={styles.btnControl}
