@@ -2,7 +2,7 @@ import { SET_ID_SONG, SET_STATUS_PLAY } from '../types';
 
 const initialState = {
   statusPlay: false,
-  idSong: 0,
+  idSong: -1,
 }
 
 export const controlPLayerReducer = (state = initialState, action) => {

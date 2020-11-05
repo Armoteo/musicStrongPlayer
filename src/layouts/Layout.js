@@ -8,7 +8,8 @@ import ControlPlayer from '../hooks/ControlPlayer';
 
 const Layout = () => {
   const { screenId, changeScreen } = useContext(ScreenContext)
-  const { statusPlay, pausePlayer, playPlayer, clickSong, songList, idSong } = ControlPlayer();
+  const { statusPlay, pausePlayer, playPlayer, clickSong,
+    songList, idSong, nextSong, prevSong } = ControlPlayer();
 
   return (<SafeAreaView>
     <View style={styles.container}>
@@ -19,7 +20,13 @@ const Layout = () => {
           songList={songList}
           idSong={idSong}
         />}
-      <ControlPanel play={statusPlay} pause={pausePlayer} playPlayer={playPlayer} />
+      <ControlPanel
+        play={statusPlay}
+        pause={pausePlayer}
+        playPlayer={playPlayer}
+        nextSong={nextSong}
+        prevSong={prevSong}
+      />
     </View>
   </SafeAreaView >)
 }

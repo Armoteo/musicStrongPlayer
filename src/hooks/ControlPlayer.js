@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import TrackPlayer from 'react-native-track-player';
 import { useSelector, useDispatch } from 'react-redux';
 import { setIdSong, setStatusPlay } from '../store/actions/controlPlayerAction';
@@ -38,24 +38,37 @@ const ControlPlayer = () => {
     TrackPlayer.pause();
   }
 
-  const prevSong = () => {
-
-  }
-
-  const nextSong = () => {
-
-  }
-
   const clickSong = (id) => {
     dispatch(setIdSong(id));
   };
+
+  const prevSong = () => {
+    let newId = idSong;
+    if (0 === newId) {
+      newId = songList.songList.length - 1;
+    } else {
+      newId = newId - 1;
+    }
+    clickSong(newId);
+  }
+
+  const nextSong = () => {
+    let newId = idSong;
+    if (songList.songList.length - 1 <= newId) {
+      newId = 0;
+    } else {
+      newId = newId + 1;
+    }
+    clickSong(newId);
+  }
 
   useEffect(() => {
     dispatch(loadSongs());
   }, []);
 
   useEffect(() => {
-    playPlayer();
+    idSong === -1 ? handleStatusPlay(false) : playPlayer();
+    return () => TrackPlayer.pause();
   }, [idSong])
 
   return {
