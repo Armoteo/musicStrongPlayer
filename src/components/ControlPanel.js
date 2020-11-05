@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Image, TouchableOpacity, View } from 'react-native';
 
-const ControlPanel = ({ play, pause, playPlayer, nextSong, prevSong }) => (
+const ControlPanel = ({ play, pause, playPlayer, nextSong, prevSong, duration }) => (
   <View style={styles.container}>
+    <View style={styles.seekbar}>
+
+    </View>
     <View style={styles.buttonBox}>
       <TouchableOpacity
         activeOpacity={0.5}
@@ -53,6 +56,7 @@ ControlPanel.defaultProps = {
   nextSong: () => { },
   prevSong: () => { },
   pause: () => { },
+  duration: 0
 };
 
 ControlPanel.propTypes = {
@@ -61,6 +65,7 @@ ControlPanel.propTypes = {
   nextSong: PropTypes.func,
   prevSong: PropTypes.func,
   pause: PropTypes.func,
+  duration: PropTypes.number
 
 };
 
@@ -81,6 +86,9 @@ const styles = StyleSheet.create({
   btnControl: {
     width: 60,
     height: 60
+  },
+  seekbar: {
+
   }
 });
 
