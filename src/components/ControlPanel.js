@@ -1,11 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Image, TouchableOpacity, View } from 'react-native';
+import { SliderPicker } from 'react-native-slider-picker';
 
-const ControlPanel = ({ play, pause, playPlayer, nextSong, prevSong, duration }) => (
+const ControlPanel = ({ play, pause, playPlayer, nextSong, prevSong, duration, setPosition }) => (
   <View style={styles.container}>
     <View style={styles.seekbar}>
-
+      <SliderPicker
+        maxValue={100}
+        callback={position => {
+          setPosition(position)
+        }}
+        defaultValue={duration}
+        fillColor={'#F98E00'}
+        labelFontColor={"#725D24"}
+        buttonBackgroundColor={'#F98E00'}
+        buttonBorderColor={"#F98E00"}
+      />
     </View>
     <View style={styles.buttonBox}>
       <TouchableOpacity
@@ -56,6 +67,7 @@ ControlPanel.defaultProps = {
   nextSong: () => { },
   prevSong: () => { },
   pause: () => { },
+  setPosition: () => { },
   duration: 0
 };
 
@@ -65,6 +77,7 @@ ControlPanel.propTypes = {
   nextSong: PropTypes.func,
   prevSong: PropTypes.func,
   pause: PropTypes.func,
+  setPosition: PropTypes.func,
   duration: PropTypes.number
 
 };
@@ -72,7 +85,7 @@ ControlPanel.propTypes = {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 75,
+    height: 130,
     backgroundColor: '#2B2B2B',
     borderTopColor: '#F98E00',
     borderTopWidth: 2,
@@ -81,14 +94,16 @@ const styles = StyleSheet.create({
   buttonBox: {
     width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    flex: 1
   },
   btnControl: {
-    width: 60,
-    height: 60
+    width: 50,
+    height: 50,
   },
   seekbar: {
-
+    width: '100%',
+    flex: 1
   }
 });
 

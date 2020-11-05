@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import TrackPlayer, { } from 'react-native-track-player';
 import { useSelector, useDispatch } from 'react-redux';
-import { setIdSong, setStatusPlay } from '../store/actions/controlPlayerAction';
+import { setIdSong, setStatusDuration, setStatusPlay } from '../store/actions/controlPlayerAction';
 import { loadSongs } from '../store/actions/songListAction';
 
 const ControlPlayer = () => {
   const songList = useSelector(state => state.songList);
   const statusPlay = useSelector(state => state.controlState.statusPlay);
   const idSong = useSelector(state => state.controlState.idSong);
+  const duration = useSelector(state => state.controlState.duration);
 
   const dispatch = useDispatch();
 
@@ -21,21 +22,21 @@ const ControlPlayer = () => {
     }
   });
 
-  const [duration, setDuration] = useState(0);
-
-  const getData = async () => {
+  const getPosition = async () => {
     let position = await TrackPlayer.getPosition();
-    setDuration(position);
+    dispatch(setStatusDuration(position))
+  }
+
+  const setPosition = (pos) => {
+    TrackPlayer.seekTo(pos);
   }
 
   useEffect(() => {
     const timer = setInterval(() => {
-      getData();
+      getPosition();
     }, 1000);
     return () => clearInterval(timer);
   }, []);
-
-  console.log(duration);
 
   const handleStatusPlay = (status) => {
     dispatch(setStatusPlay(status));
@@ -89,7 +90,7 @@ const ControlPlayer = () => {
 
   return {
     playPlayer, pausePlayer, prevSong, idSong,
-    nextSong, songList, clickSong, statusPlay, duration
+    nextSong, songList, clickSong, statusPlay, duration, setPosition
   };
 }
 
