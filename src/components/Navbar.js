@@ -2,23 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 
-const Navbar = ({ title }) => (
+const Navbar = ({ title, stopPlayer }) => (
   <View style={styles.container}>
     <TouchableOpacity>
       <FontAwesomeIcon icon={faBars} style={styles.icon} size={20} />
     </TouchableOpacity>
     <Text style={styles.text}>{title}</Text>
+    <TouchableOpacity
+      style={styles.iconExit}
+      onPress={stopPlayer}
+    >
+      <FontAwesomeIcon icon={faTimes} style={styles.icon} size={24} />
+    </TouchableOpacity>
   </View>
 );
 
 Navbar.defaultProps = {
-  title: ''
+  title: '',
+  stopPlayer: () => { }
 };
 
 Navbar.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string,
+  stopPlayer: PropTypes.func
 };
 
 const styles = StyleSheet.create({
@@ -39,6 +47,11 @@ const styles = StyleSheet.create({
   icon: {
     color: '#000000',
     marginRight: 22,
+  },
+  iconExit: {
+    color: '#000000',
+    position: 'absolute',
+    right: 0
   }
 });
 

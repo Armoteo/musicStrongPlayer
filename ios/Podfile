@@ -12,6 +12,8 @@ target 'musicStrongPlayer' do
 
   pod 'RNReactNativeGetMusicFiles', :path => '../node_modules/react-native-get-music-files'
 
+  pod 'RNExitApp', :path => '../node_modules/react-native-exit-app'
+
   target 'musicStrongPlayerTests' do
     inherit! :complete
     # Pods for testing

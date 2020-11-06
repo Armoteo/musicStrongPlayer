@@ -9,11 +9,28 @@ import ControlPlayer from '../hooks/ControlPlayer';
 const Layout = () => {
   const { screenId, changeScreen } = useContext(ScreenContext)
   const { statusPlay, pausePlayer, playPlayer, clickSong,
-    songList, idSong, nextSong, prevSong, duration, setPosition } = ControlPlayer();
+    songList, idSong, nextSong, prevSong, duration, setPosition,
+    totalDuration, stopPlayer } = ControlPlayer();
+
+  const timeConver = (duration) => {
+    var pad = function (num, size) { return ('000' + num).slice(size * -1); },
+      time = parseFloat(duration).toFixed(3),
+      hours = Math.floor(time / 60 / 60),
+      minutes = Math.floor(time / 60) % 60,
+      seconds = Math.floor(time - minutes * 60),
+      milliseconds = time.slice(-3);
+
+    const hideHours = hours !== 0 ? `${pad(hours, 2)}:` : '';
+    return `${hideHours}${pad(minutes, 2)}:${pad(seconds, 2)}`;
+  }
 
   return (<SafeAreaView>
     <View style={styles.container}>
-      <Navbar title="Strong player" />
+      <Navbar
+        title="Strong player"
+        stopPlayer={stopPlayer}
+
+      />
       {screenId === 1 &&
         <MainScreen
           clickSong={clickSong}
@@ -28,6 +45,9 @@ const Layout = () => {
         prevSong={prevSong}
         duration={duration}
         setPosition={setPosition}
+        totalDuration={totalDuration}
+        positionTime={timeConver(duration)}
+        totalTime={timeConver(totalDuration)}
       />
     </View>
   </SafeAreaView >)

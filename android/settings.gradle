@@ -1,4 +1,6 @@
 rootProject.name = 'musicStrongPlayer'
+include ':react-native-exit-app'
+project(':react-native-exit-app').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-exit-app/android')
 include ':react-native-get-music-files'
 project(':react-native-get-music-files').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-get-music-files/android')
 include ':react-native-get-music-files'
