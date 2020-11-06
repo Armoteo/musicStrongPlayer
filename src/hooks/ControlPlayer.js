@@ -98,24 +98,19 @@ const ControlPlayer = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
+      getTotalDuration();
       getPosition();
     }, 1000);
     return () => clearInterval(timer);
   }, []);
 
   useEffect(() => {
-    prepearPlayer();
-  }, [songList])
-
-  useEffect(() => {
-    getTotalDuration();
-  }, [idSong])
-
-  console.log(idSong)
-
-  useEffect(() => {
     dispatch(loadSongs());
   }, []);
+
+  useEffect(() => {
+    prepearPlayer();
+  }, [songList])
 
   useEffect(() => {
     TrackPlayer.skip(idSong);
