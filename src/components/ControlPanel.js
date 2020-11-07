@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Image, TouchableOpacity, View, Text } from 'react-native';
 import Slider from 'react-native-slider';
+import {ThemeColor} from '../theme/themeColor';
 
 const ControlPanel = ({
   play, pause, playPlayer, nextSong, prevSong, duration,
@@ -97,8 +98,8 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: 130,
-    backgroundColor: '#2B2B2B',
-    borderTopColor: '#F98E00',
+    backgroundColor: ThemeColor.backgroundMainColor,
+    borderTopColor: ThemeColor.mainColor,
     borderTopWidth: 2,
     justifyContent: 'flex-end'
   },
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   time: {
-    color: '#ffffff',
+    color: ThemeColor.colorTimeDuration,
     fontSize: 18
   }
 });

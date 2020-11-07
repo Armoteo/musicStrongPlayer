@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import { ScreenContext } from '../context/screen/screenContext';
 import MainScreen from '../screens/MainScreen';
 import ControlPlayer from '../hooks/ControlPlayer';
+import {ThemeColor} from '../theme/themeColor';
 
 const Layout = () => {
   const { screenId, changeScreen } = useContext(ScreenContext)
@@ -29,7 +30,6 @@ const Layout = () => {
       <Navbar
         title="Strong player"
         stopPlayer={stopPlayer}
-
       />
       {screenId === 1 &&
         <MainScreen
@@ -56,7 +56,7 @@ const Layout = () => {
 const styles = StyleSheet.create({
   container: {
     height: '100%',
-    backgroundColor: '#2B2B2B',
+    backgroundColor: ThemeColor.backgroundMainColor,
     justifyContent: 'space-between'
   }
 });

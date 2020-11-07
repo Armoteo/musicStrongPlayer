@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
+import {ThemeColor} from '../theme/themeColor';
 
 const Navbar = ({ title, stopPlayer }) => (
   <View style={styles.container}>
@@ -33,23 +34,23 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: 60,
-    backgroundColor: '#F98E00',
+    backgroundColor: ThemeColor.navbarColor,
     alignItems: 'center',
     flexDirection: 'row',
     paddingLeft: 20
   },
   text: {
-    color: '#000000',
+    color: ThemeColor.mainFont,
     fontSize: 22,
     fontStyle: 'italic',
     fontWeight: 'bold'
   },
   icon: {
-    color: '#000000',
+    color: ThemeColor.mainFont,
     marginRight: 22,
   },
   iconExit: {
-    color: '#000000',
+    color: ThemeColor.mainFont,
     position: 'absolute',
     right: 0
   }

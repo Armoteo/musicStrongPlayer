@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import Song from './Song';
 
 const ListMusic = ({ songList, clickSong }) => (
@@ -11,7 +11,6 @@ const ListMusic = ({ songList, clickSong }) => (
         <Song
           name={item.title}
           artist={item.author}
-          duration={item.duration}
           id={index}
           clickSong={clickSong}
         />

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {ThemeColor} from '../theme/themeColor';
 
 const Song = ({ name, artist, duration, id, clickSong }) => {
 
@@ -42,7 +43,6 @@ Song.propTypes = {
   duration: PropTypes.string,
   clickSong: PropTypes.func,
   id: PropTypes.number
-
 };
 
 const styles = StyleSheet.create({
@@ -55,15 +55,15 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 18,
-    color: '#725D24'
+    color: ThemeColor.songFont
   },
   artist: {
     fontSize: 14,
-    color: '#725D24'
+    color: ThemeColor.songFont
   },
   duration: {
     fontSize: 15,
-    color: '#725D24',
+    color: ThemeColor.songFont,
     position: 'absolute',
     right: 10,
     top: '50%'
