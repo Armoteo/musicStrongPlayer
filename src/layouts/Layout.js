@@ -2,13 +2,11 @@ import React, { useContext, useEffect } from 'react';
 import { StyleSheet, SafeAreaView, View } from 'react-native';
 import ControlPanel from '../components/ControlPanel';
 import Navbar from '../components/Navbar';
-import { ScreenContext } from '../context/screen/screenContext';
 import MainScreen from '../screens/MainScreen';
 import ControlPlayer from '../hooks/ControlPlayer';
-import {ThemeColor} from '../theme/themeColor';
+import { ThemeColor } from '../theme/themeColor';
 
 const Layout = () => {
-  const { screenId, changeScreen } = useContext(ScreenContext)
   const { statusPlay, pausePlayer, playPlayer, clickSong,
     songList, idSong, nextSong, prevSong, duration, setPosition,
     totalDuration, stopPlayer } = ControlPlayer();
@@ -31,12 +29,11 @@ const Layout = () => {
         title="Strong player"
         stopPlayer={stopPlayer}
       />
-      {screenId === 1 &&
-        <MainScreen
-          clickSong={clickSong}
-          songList={songList}
-          idSong={idSong}
-        />}
+      <MainScreen
+        clickSong={clickSong}
+        songList={songList}
+        idSong={idSong}
+      />
       <ControlPanel
         play={statusPlay}
         pause={pausePlayer}

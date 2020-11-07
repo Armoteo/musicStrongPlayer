@@ -11,6 +11,7 @@ const ListMusic = ({ songList, clickSong }) => (
         <Song
           name={item.title}
           artist={item.author}
+          duration={item.duration}
           id={index}
           clickSong={clickSong}
         />
@@ -22,7 +23,7 @@ const ListMusic = ({ songList, clickSong }) => (
 
 ListMusic.defaultProps = {
   songList: {},
-  clickSong:()=>{}
+  clickSong: () => { }
 };
 
 ListMusic.propTypes = {
