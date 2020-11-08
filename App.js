@@ -7,7 +7,8 @@ import RadioScreen from './src/screens/RadioScreens';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MainScreen from './src/screens/MainScreen';
-import ControlPlayer from './src/hooks/ControlPlayer';
+import Navbar from './src/components/Navbar';
+import { ThemeColor } from './src/theme/themeColor';
 
 const App = () => {
   const [permissionsStorage, setPermissionsStorage] = useState('');
@@ -22,8 +23,25 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={MainScreen} />
+        <Stack.Navigator
+          // screenOptions={{
+          //   title: 'Strong player',
+          //   headerStyle: {
+          //     backgroundColor: ThemeColor.navbarColor,
+          //   },
+          //   headerTintColor: ThemeColor.mainFont,
+          //   headerTitleStyle: {
+          //     fontSize: 20,
+          //     fontStyle: 'italic',
+          //     fontWeight: 'bold'
+          //   }
+          // }}
+          screenOptions={{ headerTitle: props => <Navbar {...props} /> }}
+        >
+          <Stack.Screen
+            name="Home"
+            component={MainScreen}
+          />
           <Stack.Screen name="RadioScreen" component={RadioScreen} />
         </Stack.Navigator>
       </NavigationContainer>
