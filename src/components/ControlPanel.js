@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Image, TouchableOpacity, View, Text } from 'react-native';
 import Slider from 'react-native-slider';
-import {ThemeColor} from '../theme/themeColor';
+import { ThemeColor } from '../theme/themeColor';
 
 const ControlPanel = ({
   play, pause, playPlayer, nextSong, prevSong, duration,
@@ -97,11 +97,11 @@ ControlPanel.propTypes = {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 130,
+    height: 125,
     backgroundColor: ThemeColor.backgroundMainColor,
     borderTopColor: ThemeColor.mainColor,
     borderTopWidth: 2,
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   buttonBox: {
     width: '100%',
