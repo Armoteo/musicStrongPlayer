@@ -1,15 +1,10 @@
-import React, { useContext, useEffect } from 'react';
-import { StyleSheet, SafeAreaView, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import ControlPanel from '../components/ControlPanel';
 import Navbar from '../components/Navbar';
-import MainScreen from '../screens/MainScreen';
-import ControlPlayer from '../hooks/ControlPlayer';
 import { ThemeColor } from '../theme/themeColor';
 
-const Layout = () => {
-  const { statusPlay, pausePlayer, playPlayer, clickSong,
-    songList, idSong, nextSong, prevSong, duration, setPosition,
-    totalDuration, stopPlayer } = ControlPlayer();
+const Layout = (props) => {
 
   const timeConver = (duration) => {
     var pad = function (num, size) { return ('000' + num).slice(size * -1); },
@@ -18,36 +13,32 @@ const Layout = () => {
       minutes = Math.floor(time / 60) % 60,
       seconds = Math.floor(time - minutes * 60),
       milliseconds = time.slice(-3);
-
     const hideHours = hours !== 0 ? `${pad(hours, 2)}:` : '';
     return `${hideHours}${pad(minutes, 2)}:${pad(seconds, 2)}`;
   }
 
-  return (<SafeAreaView>
+  return (
     <View style={styles.container}>
       <Navbar
         title="Strong player"
-        stopPlayer={stopPlayer}
+        stopPlayer={props.stopPlayer}
+        navigation={props.navigation}
       />
-      <MainScreen
-        clickSong={clickSong}
-        songList={songList}
-        idSong={idSong}
-      />
+      {props.children}
       <ControlPanel
-        play={statusPlay}
-        pause={pausePlayer}
-        playPlayer={playPlayer}
-        nextSong={nextSong}
-        prevSong={prevSong}
-        duration={duration}
-        setPosition={setPosition}
-        totalDuration={totalDuration}
-        positionTime={timeConver(duration)}
-        totalTime={timeConver(totalDuration)}
+        play={props.statusPlay}
+        pause={props.pausePlayer}
+        playPlayer={props.playPlayer}
+        nextSong={props.nextSong}
+        prevSong={props.prevSong}
+        duration={props.duration}
+        setPosition={props.setPosition}
+        totalDuration={props.totalDuration}
+        positionTime={timeConver(props.duration)}
+        totalTime={timeConver(props.totalDuration)}
       />
     </View>
-  </SafeAreaView >)
+  )
 }
 
 const styles = StyleSheet.create({
