@@ -4,5 +4,6 @@ export const ThemeColor = {
   navbarColor: '#F98E00',
   backgroundMainColor: '#2B2B2B',
   colorTimeDuration: '#ffffff',
-  mainColor:'#F98E00',
+  mainColor: '#F98E00',
+  backGroundBorder: 'rgba(0, 0, 0, 0.1)'
 }

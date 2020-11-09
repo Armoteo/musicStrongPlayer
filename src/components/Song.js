@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import {ThemeColor} from '../theme/themeColor';
+import { ThemeColor } from '../theme/themeColor';
 
 const Song = ({ name, artist, duration, id, clickSong }) => {
 
@@ -13,9 +13,9 @@ const Song = ({ name, artist, duration, id, clickSong }) => {
 
   return (
     <TouchableOpacity
-     style={styles.container}
-     onPress={()=>clickSong(id)}
-     >
+      style={styles.container}
+      onPress={() => clickSong(id)}
+    >
       <Text style={styles.name}>
         {name}
       </Text>
@@ -34,7 +34,7 @@ Song.defaultProps = {
   artist: '',
   duration: '',
   id: 0,
-  clickSong:()=>{}
+  clickSong: () => { }
 };
 
 Song.propTypes = {

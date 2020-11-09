@@ -7,8 +7,7 @@ import { createDrawerNavigator, DrawerContentScrollView } from '@react-navigatio
 import Permissions, { PERMISSIONS } from 'react-native-permissions';
 import MainScreen from './src/screens/MainScreen';
 import RadioScreen from './src/screens/RadioScreens';
-import { Button, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import DrawerCustom from './src/components/DrawerCustom';
 
 const App = () => {
   const [permissionsStorage, setPermissionsStorage] = useState('');
@@ -20,21 +19,6 @@ const App = () => {
     });
   }, []);
 
-  const DrawerCustoms = (props) => (
-    <DrawerContentScrollView {...props}>
-
-      <Button
-        title="Help"
-        onPress={() => props.navigation.navigate('RadioScreen')}
-      />
-      <TouchableOpacity
-        onPress={() => props.navigation.navigate('RadioScreen')}
-      >
-        <Text style={{ color: 'red' }}>hghghgh</Text>
-      </TouchableOpacity>
-    </DrawerContentScrollView>
-  )
-
   return (
     <Provider store={store}>
       <NavigationContainer>
@@ -44,7 +28,7 @@ const App = () => {
           drawerStyle={{
             backgroundColor: '#2B2B2B',
           }}
-          drawerContent={props => <DrawerCustoms {...props} />}
+          drawerContent={props => <DrawerCustom {...props} />}
         >
           <Drawer.Screen name="Home" component={MainScreen} />
           <Drawer.Screen name="RadioScreen" component={RadioScreen} />
