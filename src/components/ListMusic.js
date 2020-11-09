@@ -5,6 +5,7 @@ import Song from './Song';
 
 const ListMusic = ({ songList, clickSong }) => (
   <View style={styles.container}>
+    {console.log(songList)}
     <FlatList
       data={songList}
       renderItem={({ item, index }) => (
@@ -12,11 +13,11 @@ const ListMusic = ({ songList, clickSong }) => (
           name={item.title}
           artist={item.author}
           duration={item.duration}
-          id={index}
+          id={`${index}`}
           clickSong={clickSong}
         />
       )}
-      keyExtractor={index => index.title}
+      keyExtractor={(item, index) => [item.id, index].join('_')}
     />
   </View>
 );
