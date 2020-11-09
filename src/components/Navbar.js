@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
-import {ThemeColor} from '../theme/themeColor';
+import { ThemeColor } from '../theme/themeColor';
 
-const Navbar = ({ title, stopPlayer }) => (
+const Navbar = ({ title, stopPlayer, siderBar }) => (
   <View style={styles.container}>
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={siderBar}
+    >
       <FontAwesomeIcon icon={faBars} style={styles.icon} size={20} />
     </TouchableOpacity>
     <Text style={styles.text}>{title}</Text>

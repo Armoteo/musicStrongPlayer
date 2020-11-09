@@ -16,7 +16,7 @@ const ControlPlayer = () => {
 
   const tracks = songList.songList.map((item, index) => {
     return {
-      id: '' + index,
+      id: `${index}`,
       url: item.path,
       title: item.title,
       artist: item.author,
@@ -47,7 +47,14 @@ const ControlPlayer = () => {
       await TrackPlayer.reset();
       await TrackPlayer.add(tracks);
       getCurrentTrackID();
-    });
+    })
+      .catch(function (error) {
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+        // ADD THIS THROW error
+        alert(error.message);
+        throw error;
+      })
+      ;
   }
 
   const playPlayer = () => {

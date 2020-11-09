@@ -10,6 +10,7 @@ const fetchWorker = ({
   dispatch
 }) => {
   MusicFiles.getAll({
+    // id: true,
     blured: true,
     artist: true,
     duration: true,
@@ -21,7 +22,7 @@ const fetchWorker = ({
   }).then(tracks => {
     dispatch(setSongsList(tracks))
   }).catch(error => {
-    console.log(error)
+    alert(error.message);
   })
 };
 
