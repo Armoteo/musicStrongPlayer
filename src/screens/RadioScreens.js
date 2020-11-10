@@ -3,7 +3,6 @@ import { StyleSheet, View, Text, Button } from 'react-native';
 
 const RadioScreens = (props) => (
   <View style={styles.container}>
-    {console.log(props)}
     <Text>RADIO</Text>
     <Button
       title="BACK MAIN"

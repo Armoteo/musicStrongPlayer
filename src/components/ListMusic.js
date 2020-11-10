@@ -5,12 +5,13 @@ import Song from './Song';
 
 const ListMusic = ({ songList, clickSong }) => (
   <View style={styles.container}>
+    {console.log(songList)}
     <FlatList
       data={songList}
       renderItem={({ item, index }) => (
         <Song
-          name={item.title}
-          artist={item.author}
+          name={item.title !== null ? item.title : item.fileName.split('.')[0]}
+          artist={item.author !== null ? item.author : 'no autor'}
           duration={item.duration}
           id={`${index}`}
           clickSong={clickSong}
