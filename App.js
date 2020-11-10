@@ -28,6 +28,9 @@ const App = () => {
           drawerStyle={{
             backgroundColor: '#2B2B2B',
           }}
+          screenOptions={{
+            headerShown: false
+          }}
           drawerContent={props => <DrawerCustom {...props} />}
         >
           <Drawer.Screen name="Home" component={MainScreen} />
