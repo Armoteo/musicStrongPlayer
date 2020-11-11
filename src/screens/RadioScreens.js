@@ -1,22 +1,30 @@
 import React from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
+import Navbar from '../components/Navbar';
+import ControlPlayer from '../hooks/ControlPlayer';
+import { ThemeColor } from '../theme/themeColor';
 
-const RadioScreens = (props) => (
+const RadioScreens = ({navigation}) => {
+  const { stopPlayer } = ControlPlayer();
+
+    const siderBar = () => {
+      navigation.openDrawer();
+    }
+  return(
   <View style={styles.container}>
-    <Text>RADIO</Text>
-    <Button
-      title="BACK MAIN"
-      onPress={() =>
-        props.navigation.navigate('Home')
-      }
+    <Navbar
+      title="StrongPlayer"
+      stopPlayer={stopPlayer}
+      siderBar={siderBar}
     />
   </View>
-)
+)}
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    flex: 2
+    backgroundColor: ThemeColor.backgroundMainColor,
+    height: '100%',
+    justifyContent: 'space-between'
   }
 });
 

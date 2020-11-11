@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar';
 import ControlPlayer from '../hooks/ControlPlayer';
 import { ThemeColor } from '../theme/themeColor';
 
-const MainScreen = ({ navigation, route }) => {
+const MainScreen = ({ navigation }) => {
   const { statusPlay, pausePlayer, playPlayer, clickSong,
     songList, idSong, nextSong, prevSong, duration, setPosition,
     totalDuration, stopPlayer } = ControlPlayer();

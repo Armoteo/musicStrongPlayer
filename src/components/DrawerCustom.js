@@ -1,7 +1,6 @@
 import React from 'react';
 import {
-  SafeAreaView, StyleSheet, Text,
-  TouchableOpacity, View, Image, ImageBackground
+  SafeAreaView, StyleSheet, Text, Image, ImageBackground
 } from 'react-native';
 import { DrawerContentScrollView } from '@react-navigation/drawer';
 import { ThemeColor } from '../theme/themeColor';
@@ -31,9 +30,10 @@ const DrawerCustom = (props) => {
         />
         <ContainerItem
           header="Опции плеера"
-          itemFirst="Открыть папку"
+          itemFirst="Открыть плеер"
           itemSecond="FM online"
           secondItemClick={() => props.navigation.navigate('RadioScreen')}
+          firstItemClick={() => props.navigation.navigate('Home')}
         />
         <ItemMenuDrawer
           text="Информация"
