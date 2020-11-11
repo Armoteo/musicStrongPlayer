@@ -5,7 +5,6 @@ import Song from './Song';
 
 const ListMusic = ({ songList, clickSong }) => (
   <View style={styles.container}>
-    {console.log(songList)}
     <FlatList
       data={songList}
       renderItem={({ item, index }) => (
