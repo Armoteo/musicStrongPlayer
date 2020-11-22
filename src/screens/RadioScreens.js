@@ -1,42 +1,19 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import Navbar from '../components/Navbar';
 import ControlPlayer from '../hooks/ControlPlayer';
 import { ThemeColor } from '../theme/themeColor';
-import Dropdown from 'react-native-modal-select-option';
+import { Picker } from '@react-native-picker/picker';
+import ControlPanelRadio from '../components/ControlPanelRadio';
+import PanelRadio from '../components/PanelRadio';
 
 const RadioScreens = ({ navigation }) => {
   const { stopPlayer } = ControlPlayer();
-  const [propsDropdown, setPropsDropdown] = useState({
-    defaultValue: { value: 5, label: 'Kebumen' },
-    options: [
-      { value: 1, label: 'Bandung' },
-      { value: 2, label: 'Surabaya' },
-      { value: 3, label: 'Palembang' },
-      { value: 4, label: 'Jakarta' },
-    ],
-    label: 'Your City',
-    animationType: 'none',
-  });
-  const [selectedOption, setSelectedOption] = useState(
-    propsDropdown.defaultValue || { value: 0, label: 'Pilih Kota' }
-  );
-  const [isShowingOptions, setIsShowingOptions] = useState(false);
+  const [select, setSelecet] = useState('Choose stantion');
 
   const siderBar = () => {
     navigation.openDrawer();
   }
-
-  const onSelect = (item, isShow) => {
-    setIsShowingOptions(isShow);
-    setSelectedOption(item);
-
-  };
-
-  const onShow = (value) => {
-    setIsShowingOptions(value);
-  };
-
 
   return (
     <View style={styles.container}>
@@ -45,12 +22,26 @@ const RadioScreens = ({ navigation }) => {
         stopPlayer={stopPlayer}
         siderBar={siderBar}
       />
-      <Dropdown {...propsDropdown}
-        onSelect={onSelect}
-        onShow={onShow}
-        isShowingOptions={isShowingOptions}
-        selectedOption={selectedOption}
-      />
+      <View style={styles.radioConteiner}>
+        <View style={styles.header}>
+          <PanelRadio />
+          <Picker
+            selectedValue={select}
+            style={styles.picker}
+            dropdownIconColor='#725D24'
+            onValueChange={(itemValue, itemIndex) =>
+              setSelecet(itemValue)
+            }>
+            <Picker.Item label="Hit Fm" value="java2" />
+            <Picker.Item label="Radio Rock" value="js" />
+          </Picker>
+        </View>
+        <Image
+          style={styles.logo}
+          source={require('../../assets/ic_mynotka-web.png')}
+        />
+      </View>
+      <ControlPanelRadio />
     </View>
   )
 }
@@ -60,6 +51,30 @@ const styles = StyleSheet.create({
     backgroundColor: ThemeColor.backgroundMainColor,
     height: '100%',
     justifyContent: 'space-between'
+  },
+  radioConteiner: {
+    width: '100%',
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 20
+  },
+  header: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  picker: {
+    width: '70%',
+    height: 40,
+    color: '#725D24',
+    transform: [
+      { scaleX: 1.4 },
+      { scaleY: 1.4 },
+    ]
+  },
+  logo: {
+    width: '70%',
+    height: '60%'
   }
 });
 

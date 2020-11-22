@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { ThemeColor } from '../theme/themeColor';
 
 const Navbar = ({ title, stopPlayer, siderBar }) => (
