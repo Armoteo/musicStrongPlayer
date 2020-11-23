@@ -29,6 +29,7 @@
     "react-native-screens": "^2.13.0",
     "react-native-slider": "^0.11.0",
     "react-native-slider-picker": "^1.1.1",
+    "react-native-sqlite-storage": "^5.0.0",
     "react-native-svg": "^12.1.0",
     "react-native-swift": "^1.2.3",
     "react-native-track-player": "^1.2.3",

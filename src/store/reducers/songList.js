@@ -1,7 +1,7 @@
-import {SET_SONGS_LIST} from '../types';
+import { SET_SONGS_LIST } from '../types';
 
 const initialState = {
-  songList:[]
+  songList: []
 }
 
 export const songListReducer = (state = initialState, action) => {
@@ -11,5 +11,4 @@ export const songListReducer = (state = initialState, action) => {
     }
     default: return state
   }
-
 }
