@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
+import SQLite from "react-native-sqlite-storage";
 import store from './src/store/index';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -8,6 +9,19 @@ import Permissions, { PERMISSIONS } from 'react-native-permissions';
 import MainScreen from './src/screens/MainScreen';
 import RadioScreen from './src/screens/RadioScreens';
 import DrawerCustom from './src/components/DrawerCustom';
+
+global.db = SQLite.openDatabase(
+  {
+    name: 'SQLite',
+    location: 'default',
+    createFromLocation: '~SQLite.db',
+  },
+  () => { },
+  error => {
+    console.log("ERROR: " + error);
+  }
+);
+
 
 const App = () => {
   const [permissionsStorage, setPermissionsStorage] = useState('');
