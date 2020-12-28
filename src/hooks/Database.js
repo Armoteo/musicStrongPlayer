@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { openDatabase } from 'react-native-sqlite-storage';
 
 const Database = () => {
@@ -15,7 +15,7 @@ const Database = () => {
             txn.executeSql('DROP TABLE IF EXISTS table_playlist', []);
             txn.executeSql(
               // eslint-disable-next-line max-len
-              'CREATE TABLE IF NOT EXISTS table_playlist(user_id INTEGER PRIMARY KEY AUTOINCREMENT, user_name VARCHAR(20), user_contact INT(10), user_address VARCHAR(255))',
+              'CREATE TABLE IF NOT EXISTS table_playlist(_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(20), number INT(10))',
               []
             );
           }
@@ -24,11 +24,11 @@ const Database = () => {
     });
   }, []);
 
-  const insertQuery = () => {
+  const insertQuery = (name, number) => {
     db.transaction((tx) => {
       tx.executeSql(
-        'INSERT INTO table_playlist (user_name, user_contact, user_address) VALUES (?,?,?)',
-        [userName, userContact, userAddress],
+        'INSERT INTO table_playlist (name, number) VALUES (?,?,?)',
+        [name, number],
         (tx, results) => {
           console.log('Results', results.rowsAffected);
         }
@@ -36,11 +36,11 @@ const Database = () => {
     });
   };
   
-  const deleteQuery = () => {
+  const deleteQuery = (_id) => {
     db.transaction((tx) => {
       tx.executeSql(
-        'DELETE FROM  table_user where user_id=?',
-        [inputUserId],
+        'DELETE FROM  table_playlist where _id=?',
+        [_id],
         (tx, results) => {
           console.log('Results', results.rowsAffected);
         }
@@ -49,21 +49,23 @@ const Database = () => {
   };
 
   const viewAll = () => {
+    const temp = [];
     db.transaction((tx) => {
       tx.executeSql(
-        'SELECT * FROM table_user',
+        'SELECT * FROM table_playlist',
         [],
         (tx, results) => {
-          const temp = [];
+          // const temp = [];
           for (let i = 0; i < results.rows.length; ++i) { temp.push(results.rows.item(i)); }
           // setFlatListItems(temp);
         }
       );
     });
+    return temp;
   };
 
   return {
-
+    viewAll, insertQuery, deleteQuery
   };
 };
 

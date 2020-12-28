@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Platform, StyleSheet, Text, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
+import {
+  Platform, StyleSheet, Text, TouchableNativeFeedback, TouchableOpacity, View 
+} from 'react-native';
 import { ThemeColor } from '../../theme/themeColor';
 
 const AppButton = ({
   children, onPress, color, colorText, textTransform
 }) => {
-  const Wrapper =
-    Platform.OS === 'android' ? TouchableNativeFeedback : TouchableOpacity
+  const Wrapper = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableOpacity;
 
   return (
     <Wrapper onPress={onPress} activeOpacity={0.7}>
@@ -15,10 +16,14 @@ const AppButton = ({
         <Text style={{
           ...styles.text,
           color: colorText,
-          textTransform: textTransform
-        }}>{children}</Text>
+          textTransform
+        }}
+        >
+          {children}
+
+        </Text>
       </View>
-    </Wrapper >
+    </Wrapper>
   );
 };
 

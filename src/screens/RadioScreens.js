@@ -1,39 +1,79 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Image } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { openDatabase } from 'react-native-sqlite-storage';
 import Navbar from '../components/Navbar';
 import ControlPlayer from '../hooks/ControlPlayer';
 import { ThemeColor } from '../theme/themeColor';
 import ControlPanelRadio from '../components/ControlPanelRadio';
-import PanelRadio from '../components/PanelRadio';
 
 const RadioScreens = ({ navigation }) => {
   const { stopPlayer } = ControlPlayer();
-  const [select, setSelecet] = useState('Choose stantion');
-
+  const [dataView, setDataView] = useState([]);
+  const db = openDatabase({ name: 'SQLite.db' });
+  console.log(dataView);
   const siderBar = () => {
     navigation.openDrawer();
+  };
+
+  useEffect(() => {
+    db.transaction((txn) => {
+      txn.executeSql(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='table_playlist'",
+        [],
+        (tx, res) => {
+          console.log('item:', res.rows.length);
+          if (res.rows.length === 0) {
+            txn.executeSql('DROP TABLE IF EXISTS table_playlist', []);
+            txn.executeSql(
+              // eslint-disable-next-line max-len
+              'CREATE TABLE IF NOT EXISTS table_playlist(_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(20), number VARCHAR(20))',
+              []
+            );
+          }
+        }
+      );
+    });
+  }, []);
+
+  const insertQuery = (nameE, number) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        'INSERT INTO table_playlist (name, number) VALUES (?,?)',
+        [nameE, number],
+        (tx, results) => {
+          console.log('Results', results.rowsAffected);
+        }
+      );
+    });
+  };
+
+  const viewAll = () => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        'SELECT * FROM table_playlist',
+        [],
+        (tx, results) => {
+          const temp = [];
+          for (let i = 0; i < results.rows.length; ++i) { temp.push(results.rows.item(i)); }
+          console.log(temp);
+          setDataView(temp);
+        }
+      );
+    });
   };
 
   return (
     <View style={styles.container}>
       <Navbar title="StrongPlayer" stopPlayer={stopPlayer} siderBar={siderBar} />
       <View style={styles.radioConteiner}>
-        <View style={styles.header}>
-          <PanelRadio />
-          <Picker
-            selectedValue={select}
-            style={styles.picker}
-            dropdownIconColor="#725D24"
-            onValueChange={(itemValue, itemIndex) => setSelecet(itemValue)}
-          >
-            <Picker.Item label="Hit Fm" value="java2" />
-            <Picker.Item label="Radio Rock" value="js" />
-          </Picker>
-        </View>
-        <Image style={styles.logo} source={require('../../assets/ic_mynotka-web.png')} />
+        {dataView.map((item, index) => (
+          <Text style={styles.text}>
+            {item.name}
+          </Text>
+        ))}
+        
       </View>
-      <ControlPanelRadio />
+      <ControlPanelRadio start={viewAll} stop={() => insertQuery('utr', '6788')} />
     </View>
   );
 };
@@ -48,22 +88,15 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 2,
     alignItems: 'center',
-    justifyContent: 'space-between',
     paddingVertical: 20
   },
   header: {
     width: '100%',
     alignItems: 'center'
   },
-  picker: {
-    width: '70%',
-    height: 40,
-    color: '#725D24',
-    transform: [{ scaleX: 1.4 }, { scaleY: 1.4 }]
-  },
-  logo: {
-    width: '70%',
-    height: '60%'
+  text: {
+    color: '#ffffff',
+    fontSize: 30,
   }
 });
 
