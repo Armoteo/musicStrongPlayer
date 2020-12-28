@@ -1,25 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  StyleSheet, Text, TouchableOpacity, View
+  StyleSheet, Text, View
 } from 'react-native';
 import { ThemeColor } from '../theme/themeColor';
 import ItemMenuDrawer from './ItemMenuDrawer';
 
 const ContainerItem = ({
-  header, itemFirst, itemSecond, firstItemClick, secondItemClick }) => (
-    <View style={styles.menuContainer}>
-      <Text style={styles.headerSection}>{header}</Text>
-      <ItemMenuDrawer
-        text={itemFirst}
-        clickMenu={firstItemClick}
-      />
-      <ItemMenuDrawer
-        text={itemSecond}
-        clickMenu={secondItemClick}
-      />
-    </View>
-  );
+  header, itemFirst, itemSecond, firstItemClick, secondItemClick 
+}) => (
+  <View style={styles.menuContainer}>
+    <Text style={styles.headerSection}>{header}</Text>
+    <ItemMenuDrawer
+      text={itemFirst}
+      clickMenu={firstItemClick}
+    />
+    <ItemMenuDrawer
+      text={itemSecond}
+      clickMenu={secondItemClick}
+    />
+  </View>
+);
 
 ContainerItem.defaultProps = {
   header: '',
